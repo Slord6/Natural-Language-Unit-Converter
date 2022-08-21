@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLUC.Units.Currency
+namespace NLUC.Units.Mass
 {
-    internal class Pennies : Unit
+    internal class Slugs : Unit
     {
-        public override Units DerivedUnits => Units.Penny;
+        public override Units DerivedUnits => Units.Slug;
 
-        public override Units RootBase => Units.PoundSterling;
+        public override Units RootBase => Units.Kilogram;
 
         public override string[] Shorthand
         {
@@ -18,25 +18,23 @@ namespace NLUC.Units.Currency
             {
                 return new string[]
                 {
-                    "p",
-                    "pence",
-                    "pennies",
-                    "penny"
+                    "slugs",
+                    "slug"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new PoundsSterling(Value / 100);
+            return new Kilograms(Value / 0.0685);
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return value * 100;
+            return value * 0.0685;
         }
 
-        public Pennies(double value) : base(value)
+        public Slugs(double value) : base(value)
         {
 
         }

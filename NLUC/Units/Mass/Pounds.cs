@@ -19,6 +19,7 @@ namespace NLUC.Units.Mass
                 return new string[]
                 {
                     "lb",
+                    "lbs",
                     "pound",
                     "pounds"
                 };

@@ -15,7 +15,13 @@ public static class Program
                 Console.Write(">");
                 string? query = Console.ReadLine();
                 if (query == null) continue;
-                HandleQuery(query);
+                try
+                {
+                    HandleQuery(query);
+                } catch
+                {
+                    Console.WriteLine("Invalid input. Try 1 kg in lbs");
+                }
             }
         }
         else
@@ -33,26 +39,11 @@ public static class Program
     {
         query = query.Trim();
         if (string.IsNullOrEmpty(query)) return;
-        // (\d*)(?: )?(\S*) in (\S*)(?: ?(?:(?:(?:where)|(?:when)) ((?:\d|.)*) ?(\S*) ?= ?((?:\d|\.)*) ?(\S*)))?
-        /*  
-        * 15l/s in kg/min where 2l = 1.2kg
-        * 15
-        * l/s
-        * kg/min
-        * 2
-        * l
-        * 1.2
-        * kg
-        * 
-        * 13ms^2 in ft/s
-        * 13
-        * ms^2
-        * ft/s
-        * <empty>
-        * <empty>
-        * <empty>
-        * <empty>
-         */
+        if(query == "?")
+        {
+            GetAllUnits().ForEach(Console.WriteLine);
+            return;
+        }
 
         Regex reg = new Regex(@"((?:\d|\.)*)(?: )?(\S*) in (\S*)(?: ?(?:(?:(?:where)|(?:when)) ((?:\d|\.)*) ?(\S*) ?(?:=|is) ?((?:\d|\.)*) ?(\S*)))?");
         Match match = reg.Match(query);

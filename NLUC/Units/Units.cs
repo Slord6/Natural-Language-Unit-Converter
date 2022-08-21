@@ -33,7 +33,25 @@ namespace NLUC.Units
         Gram,
         Celsius,
         Fahrenheit,
-        PoundsSterling,
-        Penny
+        PoundSterling,
+        Penny,
+        Bit,
+        Byte,
+        Octect,
+        Nibble,
+        Kilobit,
+        Megabit,
+        Gigabit,
+        Kilobyte,
+        Megabyte,
+        Gigabyte,
+        Terabit,
+        Petabyte,
+        Petabit,
+        USD,
+        Cent,
+        Dime,
+        Beat,
+        Slug
     }
 }

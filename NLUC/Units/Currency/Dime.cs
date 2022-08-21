@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace NLUC.Units.Currency
 {
-    internal class Pennies : Unit
+    internal class Dime : Unit
     {
-        public override Units DerivedUnits => Units.Penny;
-
-        public override Units RootBase => Units.PoundSterling;
+        public override Units DerivedUnits => Units.Dime;
+        public override Units RootBase => Units.Cent;
 
         public override string[] Shorthand
         {
@@ -18,27 +17,24 @@ namespace NLUC.Units.Currency
             {
                 return new string[]
                 {
-                    "p",
-                    "pence",
-                    "pennies",
-                    "penny"
+                    "dimes",
+                    "dime"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new PoundsSterling(Value / 100);
+            return new Cents(Value * 10);
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return value * 100;
+            return value / 10;
         }
 
-        public Pennies(double value) : base(value)
+        public Dime(double value) : base(value)
         {
-
         }
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLUC.Units.Currency
+namespace NLUC.Units.Data
 {
-    internal class Pennies : Unit
+    internal class Gigabytes : Unit
     {
-        public override Units DerivedUnits => Units.Penny;
+        public override Units DerivedUnits => Units.Gigabyte;
 
-        public override Units RootBase => Units.PoundSterling;
+        public override Units RootBase => Units.Bit;
 
         public override string[] Shorthand
         {
@@ -18,25 +18,24 @@ namespace NLUC.Units.Currency
             {
                 return new string[]
                 {
-                    "p",
-                    "pence",
-                    "pennies",
-                    "penny"
+                    "GB",
+                    "gigabyte",
+                    "gigabytes"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new PoundsSterling(Value / 100);
+            return new Megabytes(Value * 1000).ToSIBase();
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return value * 100;
+            return new Megabytes(0).FromRootBaseValue(value / 1000);
         }
 
-        public Pennies(double value) : base(value)
+        public Gigabytes(double value) : base(value)
         {
 
         }

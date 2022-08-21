@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLUC.Units.Currency
+namespace NLUC.Units.Time
 {
-    internal class Pennies : Unit
+    internal class Beats : Unit
     {
-        public override Units DerivedUnits => Units.Penny;
+        public override Units DerivedUnits => Units.Beat;
 
-        public override Units RootBase => Units.PoundSterling;
+        public override Units RootBase => Units.Second;
 
         public override string[] Shorthand
         {
@@ -18,25 +18,26 @@ namespace NLUC.Units.Currency
             {
                 return new string[]
                 {
-                    "p",
-                    "pence",
-                    "pennies",
-                    "penny"
+                    ".beats",
+                    ".beat",
+                    "beat",
+                    "beats",
+                    "swatch"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new PoundsSterling(Value / 100);
+            return new Days(Value / 1000).ToSIBase();
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return value * 100;
+            return new Days(0).FromRootBaseValue(value * 1000);
         }
 
-        public Pennies(double value) : base(value)
+        public Beats(double value) : base(value)
         {
 
         }

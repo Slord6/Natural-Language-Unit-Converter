@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace NLUC.Units.Currency
 {
-    internal class PoundsSterling : Unit
+    internal class Cents : Unit
     {
-        public override Units DerivedUnits => Units.PoundSterling;
-        public override Units RootBase => Units.PoundSterling;
+        public override Units DerivedUnits => Units.Cent;
+
+        public override Units RootBase => Units.Cent;
 
         public override IUnit ToSIBase()
         {
@@ -22,20 +23,22 @@ namespace NLUC.Units.Currency
             {
                 return new string[]
                 {
-                    "£",
-                    "pounds",
-                    "pound"
+                    "¢",
+                    "c",
+                    "cent",
+                    "cents"
                 };
             }
         }
 
-        public PoundsSterling(double value) : base(value)
+        public override double FromRootBaseValue(double value)
         {
+            return value;
         }
 
-        public override string ToString()
+        public Cents(double value) : base(value)
         {
-            return $"£{Value}";
+
         }
     }
 }
