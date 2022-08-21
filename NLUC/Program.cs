@@ -47,21 +47,10 @@ public static class Program
 
         Regex reg = new Regex(@"((?:\d|\.)*)(?: )?(\S*) in (\S*)(?: ?(?:(?:(?:where)|(?:when)) ((?:\d|\.)*) ?(\S*) ?(?:=|is) ?((?:\d|\.)*) ?(\S*)))?");
         Match match = reg.Match(query);
-        //foreach (Group group in match.Groups)
-        //{
-        //    if(group.Value == String.Empty)
-        //    {
-        //        Console.WriteLine("<empty>");
-        //        continue;
-        //    }
-        //    Console.WriteLine(group.Value);
-        //}
 
         double fromValue = double.Parse(match.Groups[1].Value);
         string fromShorthand = match.Groups[2].Value;
         string toShorthand = match.Groups[3].Value;
-
-        //Console.WriteLine($"{fromValue}{fromShorthand} --> {toShorthand}");
 
         IUnit[] possibleFromUnits = GetUnit(fromShorthand);
         IUnit[] possibleToUnits = GetUnit(toShorthand);
