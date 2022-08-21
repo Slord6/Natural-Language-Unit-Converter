@@ -46,6 +46,78 @@ public static class Program
         return ReflectiveEnumerator.GetEnumerableOfType<Unit>(new object[] { 0 }).ToList<Unit>();
     }
 
+    private static void SimpleConvert(double fromValue, string fromShorthand, string toShorthand)
+    {
+        IUnit[] possibleFromUnits = GetUnit(fromShorthand);
+        IUnit[] possibleToUnits = GetUnit(toShorthand);
+        IUnit? fromUnit;
+        IUnit? toUnit;
+
+        ResolveToLinkedUnits(possibleFromUnits, possibleToUnits, out fromUnit, out toUnit);
+
+        if (fromUnit == null || toUnit == null)
+        {
+            Console.WriteLine($"Cannot understand units:");
+            if (fromUnit == null) Console.WriteLine(fromShorthand);
+            if (toUnit == null) Console.WriteLine(toShorthand);
+            return;
+        }
+        if (!fromUnit.HaveSharedRoot(toUnit))
+        {
+            Console.WriteLine($"{fromShorthand} and {toShorthand} have no shared root");
+            return;
+        }
+
+        fromUnit.Value = fromValue;
+        IUnit fromBase = fromUnit.ToSIBase();
+        double toValueBase = fromBase.Value;
+        toUnit.Value = toUnit.FromRootBaseValue(toValueBase);
+        Console.WriteLine(toUnit);
+    }
+
+    private static void RateConvert(double fromValue, string fromUnit, string fromPer, string toUnit, string toPer)
+    {
+        IUnit? fromUnitRes;
+        IUnit? toUnitRes;
+        ResolveToLinkedUnits(GetUnit(fromUnit), GetUnit(toUnit), out fromUnitRes, out toUnitRes);
+        if (fromUnitRes == null || toUnitRes == null)
+        {
+            string unknownUnit = fromUnitRes == null ? fromUnit : toUnit;
+            Console.WriteLine("Do not understand unit " + unknownUnit);
+            return;
+        }
+        IUnit? fromPerRes;
+        IUnit? toPerRes;
+        ResolveToLinkedUnits(GetUnit(fromPer), GetUnit(toPer), out fromPerRes, out toPerRes);
+        if (fromPerRes == null || toPerRes== null)
+        {
+            string unknownUnit = fromPerRes == null ? fromPer : toPer;
+            Console.WriteLine("Do not understand unit " + unknownUnit);
+            return;
+        }
+
+
+        // VALUES
+        fromUnitRes.Value = fromValue;
+        fromPerRes.Value = 1;
+
+        RateUnit startRate = new RateUnit(fromUnitRes, fromPerRes);
+        RateUnit? conversion;
+        if(startRate.TryConvertTo(toUnitRes, toPerRes, out conversion))
+        {
+            if(conversion == null)
+            {
+                // can't happen
+                return;
+            }
+            //conversion.Normalise();
+            Console.WriteLine(conversion);
+        } else
+        {
+            Console.WriteLine($"Cannot convert from {fromUnit}/{fromPer} to {toUnit}/{toPer}");
+        }
+    }
+
     private static void HandleQuery(string query)
     {
         query = query.Trim();
@@ -63,31 +135,17 @@ public static class Program
         string fromShorthand = match.Groups[2].Value;
         string toShorthand = match.Groups[3].Value;
 
-        IUnit[] possibleFromUnits = GetUnit(fromShorthand);
-        IUnit[] possibleToUnits = GetUnit(toShorthand);
-        IUnit? fromUnit;
-        IUnit? toUnit;
-
-        ResolveToLinkedUnits(possibleFromUnits, possibleToUnits, out fromUnit, out toUnit);
-
-        if(fromUnit == null || toUnit == null)
+        if(!fromShorthand.Contains("/") && ! toShorthand.Contains("/"))
         {
-            Console.WriteLine($"Cannot understand units:");
-            if (fromUnit == null) Console.WriteLine(fromShorthand);
-            if (toUnit == null) Console.WriteLine(toShorthand);
+            SimpleConvert(fromValue, fromShorthand, toShorthand);
             return;
         }
-        if(!fromUnit.HaveSharedRoot(toUnit))
+        else
         {
-            Console.WriteLine($"{fromShorthand} and {toShorthand} have no shared root");
-            return;
+            string[] from = fromShorthand.Split("/");
+            string[] to = toShorthand.Split("/");
+            RateConvert(fromValue, from[0], from[1], to[0], to[1]);
         }
-
-        fromUnit.Value = fromValue;
-        IUnit fromBase = fromUnit.ToSIBase();
-        double toValueBase = fromBase.Value;
-        toUnit.Value = toUnit.FromRootBaseValue(toValueBase);
-        Console.WriteLine(toUnit);
     }
 
     private static void ResolveToLinkedUnits(IUnit[] possibleFrom, IUnit[] possibleTo, out IUnit? from, out IUnit? to)
