@@ -8,6 +8,7 @@ public static class Program
 {
     public static void Main(string[] args)
     {
+        string invalidInputMsg = "Invalid input. Try '3 kg in lbs'";
         if (args.Length == 0)
         {
             while (true)
@@ -18,15 +19,25 @@ public static class Program
                 try
                 {
                     HandleQuery(query);
-                } catch
+                }
+                catch
                 {
-                    Console.WriteLine("Invalid input. Try 1 kg in lbs");
+                    Console.WriteLine(invalidInputMsg);
                 }
             }
         }
         else
         {
-            HandleQuery(string.Join(" ", args));
+            string query = string.Join(" ", args);
+            try
+            {
+                HandleQuery(query);
+            }
+            catch
+            {
+                Console.WriteLine(invalidInputMsg);
+                Console.WriteLine(query);
+            }
         }
     }
 
