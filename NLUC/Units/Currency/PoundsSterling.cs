@@ -24,7 +24,8 @@ namespace NLUC.Units.Currency
                 {
                     "£",
                     "pounds",
-                    "pound"
+                    "pound",
+                    "GBP"
                 };
             }
         }

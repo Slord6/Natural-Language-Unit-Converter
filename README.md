@@ -33,4 +33,3 @@ Support queries like:
 - Volumes/areas
 - `2 cups of water in kg`
 - `2km in steps where 1 step is 30cm` - 'steps' may or may not be defined already
-- `£` should support `GBP` alias
