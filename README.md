@@ -15,6 +15,10 @@ A unit converter on the command line which uses plain English as input
 
 `.\NLUC.exe "20 kg in pounds"`
 
+`.\NLUC.exe "2m in ft and inches"`
+
+`.\NLUC.exe "15.55 days in hours and mins"`
+
 or just run `.\NLUC.exe` for a REPL-like environement
 
 You can also use it in pipes in powershell:
@@ -28,7 +32,6 @@ For a list of all available units, pass `?` as the query
 
 Support queries like:
 
-- `2m in ft and inches`
 - `15l/s in kg/min where 2 litres = 1.2 kilograms` / `15l/s in kg/min where 2 litres is 1.2 kilograms`
 - Volumes/areas
 - `2 cups of water in kg`
