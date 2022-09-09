@@ -31,7 +31,7 @@ namespace NLUC.Units
         Lumen,
         Hand,
         Gram,
-        Barleycorn,
+        Celcius,
         Fahrenheit,
         PoundSterling,
         Penny,
@@ -80,6 +80,7 @@ namespace NLUC.Units
         GalacticYear,
         Millenium,
         Jubilee,
-        Semester
+        Semester,
+        Barleycorn
     }
 }
