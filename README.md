@@ -36,3 +36,6 @@ Support queries like:
 - Volumes/areas
 - `2 cups of water in kg`
 - `2km in steps where 1 step is 30cm` - 'steps' may or may not be defined already
+- `1 oz of gold` - output `x moles`
+- `<measurement>` - output `a measure of <base measurement>`
+- `15.55 days in hours, mins and seconds` or `15.55 days in hours and mins and seconds` or `15.55 days in hours mins seconds`

@@ -8,7 +8,7 @@ namespace NLUC.Units.Temperature
 {
     internal class Celsius : Unit
     {
-        public override Units DerivedUnits => Units.Celsius;
+        public override Units DerivedUnits => Units.Barleycorn;
 
         public override Units RootBase => Units.Kelvin;
 
