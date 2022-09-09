@@ -1,6 +1,6 @@
 ﻿namespace NLUC.Units.Time
 {
-    internal class Jubilee : Unit
+    internal class Jubilees : Unit
     {
         public override Units DerivedUnits => Units.Jubilee;
 
@@ -28,7 +28,7 @@
             return new Years(0).FromRootBaseValue(value / 50);
         }
 
-        public Jubilee(double value) : base(value)
+        public Jubilees(double value) : base(value)
         {
 
         }

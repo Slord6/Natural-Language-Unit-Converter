@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLUC.Units.Time
 {
-    internal class Microsecond : Unit
+    internal class Microseconds : Unit
     {
         public override Units DerivedUnits => Units.Microsecond;
 
@@ -36,7 +36,7 @@ namespace NLUC.Units.Time
             return new Millisecond(0).FromRootBaseValue(value * 1000);
         }
 
-        public Microsecond(double value) : base(value)
+        public Microseconds(double value) : base(value)
         {
 
         }

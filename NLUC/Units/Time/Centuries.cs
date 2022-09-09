@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLUC.Units.Time
 {
-    internal class Century : Unit
+    internal class Centuries : Unit
     {
         public override Units DerivedUnits => Units.Century;
 
@@ -26,15 +26,15 @@ namespace NLUC.Units.Time
 
         public override IUnit ToSIBase()
         {
-            return new Decade(Value * 10).ToSIBase();
+            return new Decades(Value * 10).ToSIBase();
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return new Decade(0).FromRootBaseValue(value / 10);
+            return new Decades(0).FromRootBaseValue(value / 10);
         }
 
-        public Century(double value) : base(value)
+        public Centuries(double value) : base(value)
         {
 
         }

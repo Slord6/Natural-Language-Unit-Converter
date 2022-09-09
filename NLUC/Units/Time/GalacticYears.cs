@@ -1,6 +1,6 @@
 ﻿namespace NLUC.Units.Time
 {
-    internal class GalacticYear : Unit
+    internal class GalacticYears : Unit
     {
         public override Units DerivedUnits => Units.GalacticYear;
 
@@ -34,7 +34,7 @@
             return new Years(0).FromRootBaseValue(value / 230000000);
         }
 
-        public GalacticYear(double value) : base(value)
+        public GalacticYears(double value) : base(value)
         {
 
         }

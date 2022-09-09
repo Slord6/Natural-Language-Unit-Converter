@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLUC.Units.Time
 {
-    internal class Decade : Unit
+    internal class Decades : Unit
     {
         public override Units DerivedUnits => Units.Decade;
 
@@ -34,7 +34,7 @@ namespace NLUC.Units.Time
             return new Years(0).FromRootBaseValue(value / 10);
         }
 
-        public Decade(double value) : base(value)
+        public Decades(double value) : base(value)
         {
 
         }

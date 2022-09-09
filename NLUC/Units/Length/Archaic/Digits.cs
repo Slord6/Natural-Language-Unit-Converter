@@ -1,8 +1,8 @@
 ﻿namespace NLUC.Units.Length.Archaic
 {
-    internal class Ell : Unit
+    internal class Digits : Unit
     {
-        public override Units DerivedUnits => Units.Ell;
+        public override Units DerivedUnits => Units.Digit;
 
         public override Units RootBase => Units.Metre;
 
@@ -12,27 +12,23 @@
             {
                 return new string[]
                 {
-                    "ell",
-                    "ells",
-                    "ell-wand",
-                    "ell-wands",
-                    "ellwand",
-                    "ellwands"
+                    "digit",
+                    "digits"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new Inches(Value * 18).ToSIBase();
+            return new Inches(Value * 0.75).ToSIBase();
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return new Inches(0).FromRootBaseValue(value / 18);
+            return new Inches(0).FromRootBaseValue(value / 0.75);
         }
 
-        public Ell(double value) : base(value)
+        public Digits(double value) : base(value)
         {
 
         }

@@ -1,8 +1,8 @@
-﻿namespace NLUC.Units.Time.Archaic
+﻿namespace NLUC.Units.Time
 {
-    internal class Atom : Unit
+    internal class TimeUnits : Unit
     {
-        public override Units DerivedUnits => Units.Atom;
+        public override Units DerivedUnits => Units.TimeUnit;
 
         public override Units RootBase => Units.Second;
 
@@ -12,23 +12,24 @@
             {
                 return new string[]
                 {
-                    "atoms",
-                    "atom"
+                    "TU",
+                    "time unit",
+                    "time units"
                 };
             }
         }
 
         public override IUnit ToSIBase()
         {
-            return new Moments(Value * 0.0018).ToSIBase();
+            return new Microseconds(Value * 1024).ToSIBase();
         }
 
         public override double FromRootBaseValue(double value)
         {
-            return new Moments(0).FromRootBaseValue(value / 0.0018);
+            return new Microseconds(0).FromRootBaseValue(value / 1024);
         }
 
-        public Atom(double value) : base(value)
+        public TimeUnits(double value) : base(value)
         {
 
         }

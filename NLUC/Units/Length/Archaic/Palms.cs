@@ -1,6 +1,6 @@
 ﻿namespace NLUC.Units.Length.Archaic
 {
-    internal class Palm : Unit
+    internal class Palms : Unit
     {
         public override Units DerivedUnits => Units.Palm;
 
@@ -28,7 +28,7 @@
             return new Inches(0).FromRootBaseValue(value / 3);
         }
 
-        public Palm(double value) : base(value)
+        public Palms(double value) : base(value)
         {
 
         }
