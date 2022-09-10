@@ -25,7 +25,17 @@ You can also use it in pipes in powershell:
 
 `.\NLUC.exe 200lb in kg | foreach {Write-Output "$_ =" ;.\NLUC.exe "$_ in g"}`
 
-For a list of all available units, pass `?` as the query
+### References
+
+You can also see 'reference' values:
+
+`.\NLUC.exe "1200kg as elephants"`
+`.\NLUC.exe "3.4km as empire state buildings"`
+`.\NLUC.exe "44F ref chickens"`
+
+References can have multiple values, each related to a base SI unit, eg. Elephant has mass height.
+
+For a list of all available units and references, pass `?` as the query
 
 
 ## TODO
@@ -36,6 +46,6 @@ Support queries like:
 - Volumes/areas
 - `2 cups of water in kg`
 - `2km in steps where 1 step is 30cm` - 'steps' may or may not be defined already
-- `1 oz of gold` - output `x moles`
-- `<measurement>` - output `a measure of <base measurement>`
+- `1 oz as gold` - output `x moles`
+- `<measurement>` - output `a measure of <base measurement>`, eg `km` -> `a measure of metres`
 - `15.55 days in hours, mins and seconds` or `15.55 days in hours and mins and seconds` or `15.55 days in hours mins seconds`

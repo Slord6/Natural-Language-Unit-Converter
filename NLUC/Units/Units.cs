@@ -82,6 +82,7 @@ namespace NLUC.Units
         Jubilee,
         Semester,
         Barleycorn,
-        Line
+        Line,
+        Ton
     }
 }
